@@ -1,15 +1,10 @@
 import React from 'react';
 import './App.css';
-import PropTypes from 'prop-types';
 
-const App = ({ name }) => (
+const App = () => (
   <div className="App">
-    <h1>Hello {name}!</h1>
+    <h1>Hello world!</h1>
   </div>
 );
-
-App.propTypes = {
-  name: PropTypes.string.isRequired
-};
 
 export default App;
