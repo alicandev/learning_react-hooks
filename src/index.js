@@ -1,6 +1,7 @@
 import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
 
 export const TreesContext = createContext();
 
@@ -10,17 +11,6 @@ const trees = [
   {id: '3', type: 'Family'},
   {id: '4', type: 'Component'}
 ];
-
-const App = () => {
-
-  return (
-    <div>
-      <h1>Trees I&apos;ve heard of</h1>
-    </div>
-  );
-};
-
-// PropTypes
 
 ReactDOM.render(
   <TreesContext.Provider value={{trees}}>
