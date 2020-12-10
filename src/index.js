@@ -1,34 +1,35 @@
 import React, { 
+  useEffect,
   useState,
-  useEffect
+  // useEffect
 } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 const App = () => {
-  const [ name, setName ] = useState('Jan');
-  const [ admin, setAdmin ] = useState(false);
+  const [data, setData] = useState([]);
+  console.log(data, setData);
 
-  useEffect(() => {
-    console.log(`Celebrate ${name}`);
-  }, [name]);
+  useEffect(() =>{
+    fetch('https://api.github.com/users')
+      .then(res => res.json())
+      .then(setData);
+  }, []);
 
-  useEffect(() => { 
-    console.log(`the user is: ${admin ? 'admin' : 'not admin'}.`);
-  }, [admin]);
+  if (data) {
+    return (
+      <div>
+        <ul>
+          {data.map(user => (
+            <li key={user.id}>{user.login}</li>
+          ))}
+        </ul>
+        <button onClick={() => setData([])}>Remove Data</button>
+      </div>
+    );
+  }
 
-  return (
-    <section>
-      <p>Congratulations {name}!</p>
-      <button onClick={() => setName('Will')} >
-        Change Winner
-      </button>
-      <p>{admin ? 'logged in' : 'not logged in'}</p>
-      <button onClick={() => setAdmin(true)}>
-        Log In
-      </button>
-    </section>
-  );
+  return <p>No Users</p>;
 };
 
 // PropTypes
