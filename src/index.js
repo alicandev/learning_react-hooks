@@ -1,15 +1,23 @@
 import React, { 
   useReducer
+  // useState
 } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 const App = () => {
-  const [ number, setNumber ] = useReducer(
-    (number, newNumber) => number + newNumber,
-    0
+  const [checked, toggleChecked] = useReducer(checked => !checked, false);
+
+  return (
+    <>
+      <input
+        type="checkbox"
+        value={checked}
+        onChange={() => toggleChecked()}
+      />
+      {checked ? 'checked' : 'not checked'}
+    </>
   );
-  return <h1 onClick={() => setNumber(1)}>{number}</h1>;
 };
 
 // PropTypes
