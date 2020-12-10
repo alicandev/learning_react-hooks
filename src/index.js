@@ -1,48 +1,22 @@
-import React, { useState } from 'react';
+import React, { 
+  useState,
+  useEffect
+} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { FaStar } from 'react-icons/fa';
-import PropTypes from 'prop-types';
 
-const createArray = (length) => (
-  [...Array(length)]
-);
-
-const Star = ({ selected = false, onSelect })  => (
-  <FaStar 
-    color={selected ? 'red' : 'grey'}
-    onClick={onSelect}
-  />
-);
-
-const StarRating = ({ totalStars = 5 }) => {
-  const [ selectedStars, setSelectedStars ] = useState(0);
+const App = () => {
+  const [name, setName] = useState('Jan');
+  useEffect(() => document.title = `Celebrate ${name}`);
   return (
-    <>
-      {createArray(totalStars).map((n,i) => 
-        <Star 
-          key={i} 
-          selected={selectedStars > i} 
-          onSelect={() => setSelectedStars(i + 1)} 
-        />
-      )}
-      <p>{selectedStars} of {totalStars}</p>
-    </>
+    <section>
+      <p>Congratulations {name}!</p>
+      <button onClick={() => setName('Will')}>Change Winner</button>
+    </section>
   );
 };
 
-const App = () => (
-  <StarRating totalStars={10} />
-);
-
 // PropTypes
-StarRating.propTypes = {
-  totalStars: PropTypes.number
-};
-Star.propTypes = {
-  selected: PropTypes.bool,
-  onSelect: PropTypes.func
-};
 
 ReactDOM.render(
   <React.StrictMode>
